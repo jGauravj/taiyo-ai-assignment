@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Home from "./pages/Home";
+import CreateContact from "./pages/CreateContact";
+import Update from "./pages/Update";
+import Sidebar from "./components/Sidebar"; 
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
 
-function App() {
+type Props = {};
+
+export default function App({}: Props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="flex">
+        <Sidebar />
+        <div className="flex-1">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/create" element={<CreateContact />} />
+            <Route path="/edit/:id" element={<Update />} />
+            <Route path="/chart" element={<Dashboard />} />
+          </Routes>
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
-
-export default App;
